@@ -1,0 +1,36 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-01-19
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+I've leanred a lot in this workshop.
+
+First, I've learned about the purpose of Compilation Safeguards, and 
+how to add them to files to prevent multiple inclusion of the same 
+header files. Such thing is prone to happen especially when we are 
+working with a huge amount of files, and it can be difficult to keep 
+track of duplicated #include. By using a #ifndefine - #define - 
+#endif macro, we can prevent including the same header file multiple 
+times during compile time.
+
+Second, I've learned about how to work with namespaces. In this lab, 
+we are asked to program everything under the namespace "seneca". 
+Although the concept of namespaces might be complicated, the 
+implementation is relatively simple - we just have to wrap everything 
+with `namespace seneca {}`. It is also important to note that we 
+would not do the same thing inside `main.cpp` Instead, we will be 
+using the namespace. Namespace is a very handy tool when developing a 
+large scale project, and I like the idea that we are learning how to 
+work with it from the very beginning of the course.
+
+Third, I've learned about how to work with modules and separate 
+compilations. We are first asked to "split" a single file of code 
+into multiple suitable modules, then asked to actually working on 
+developing another module `StMark`. Modularization is a very 
+important concept in OOP. We have already learned the basics of 
+working with modules in IPC144. In this workshop we are getting a 
+refresh on what we've learned before.
