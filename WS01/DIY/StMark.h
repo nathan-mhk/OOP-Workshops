@@ -22,6 +22,12 @@ namespace seneca {
       int mark;
    };
 
+   void sort(StMark records[], int arrSize);
+
+   void intvlSum(StMark records[], int arrSize);
+
+   void displayDetail(StMark records[], int arrSize);
+
    /// <summary>
    /// Tries to open the students' mark data file. 
    /// If successful it will print a report based on the 
