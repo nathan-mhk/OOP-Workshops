@@ -10,6 +10,8 @@
 #ifndef ROOM_H
 #define ROOM_H
 
+#include "Guest.h"
+
 namespace seneca {
     struct Room {
         char m_roomNumber[6];
@@ -30,7 +32,7 @@ namespace seneca {
     // See correct_output.txt for the exact format
     void book(Room& room);
 
-    // vacates the room by dallocating all the memory used.
+    // vacates the room by de-allocating all the memory used.
     void vacate(Room& room);
 }
 

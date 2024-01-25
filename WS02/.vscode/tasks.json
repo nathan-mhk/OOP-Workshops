@@ -9,7 +9,9 @@
                 "-g",
                 "-Wall",
                 "-std=c++11",
-                "main.cpp", "Assessment.cpp",
+                "main.cpp",
+                // "Assessment.cpp",           // Lab
+                "Guest.cpp", "Room.cpp",    // DIY
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

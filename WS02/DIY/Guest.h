@@ -32,7 +32,7 @@ namespace seneca {
     // Age: 10<ENTER>
     void book(Guest& guest);
 
-    // vacates the guest by dallocating its memory.
+    // vacates the guest by de-allocating its memory.
     void vacate(Guest& guest);
 }
 
