@@ -23,7 +23,7 @@ namespace seneca {
         if (fptr == nullptr) {
             return false;
         }
-        return fscanf(fptr, "%d", &value) == 1;;
+        return fscanf(fptr, "%d", &value) == 1;
     }
 
     /**

@@ -1,0 +1,41 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-01-25
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In this workshop, I've learned about the practical usage of function 
+overloading and dynamic memory allocation. 
+
+In part 1 of this workshop, we have a revisit on file operations, namely 
+fscanf(). In particular, I've learned about using the returned values of 
+fscanf() to simplify the code. For instance, fscanf()s on numbers will 
+return the number of values read, fscanf() will return EOF when errors were 
+encountered. I've also learned about 2 different way of using the new 
+keyword to create different objects. First, we can directly use the () 
+operator to initialize a double pointer to some value. However, for char 
+pointers, we can only use []  operator to specify the size, then use strcpy
+() to copy the string. I've also learned about the difference between delete 
+and delete[] - latter shall be used on memories allocated with new [] (i.e. 
+char*).
+
+In part 2 of this workshop, there are 2 structs cleverly created in a way 
+that all of their related member functions are identical, i.e. meant to be 
+overloaded. The structure Guest and Room also has a "a Room can have zero or 
+more Guests" relationship. As a result, in my implementation of most of the 
+Room's functions, there will be a call to Guest's overloaded function. (i.e. 
+there will be a Guest::book() function call within the function Room::book
+()). This particularly highlights the convenience and the practical usage of 
+function overloading.
+
+Overall, this workshop is not too difficult. However, there are some errors 
+I encountered where I found to be memorable. First, I was once again 
+reminded that \r\n are used to terminate lines on Windows, and \n are used 
+on Linux. Second, delete[] should be used on memories allocated with new []. 
+Lastly, it is important and a good practice to always initialize data members. 
+Having garbage values can be dangerous (and can be frustrating, because of
+segmentation fault). And I found it interesting that the set() function can 
+somewhat be treated as the constructor of the two structures.

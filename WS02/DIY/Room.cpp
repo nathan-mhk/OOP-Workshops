@@ -17,12 +17,23 @@ namespace seneca {
     // sets the Room by allocating a dynamic array of guests and setting the room number 
     // (no validation is done for room number)
     void set(Room& room, int numberOfGuests, const char* roomNumber) {
-        if (numberOfGuests <= 0) {
-            vacate(room);
+        if (
+            numberOfGuests <= 0 ||
+            roomNumber == nullptr || strcmp(roomNumber, "") == 0
+        ) {
+            // Initialize to null and empty values
+            strcpy(room.m_roomNumber, "");
+            room.m_noOfGuests = 0;
+            room.m_guests = nullptr;
         } else {
+            // Initialize to the provided values
             strcpy(room.m_roomNumber, roomNumber);
             room.m_noOfGuests = numberOfGuests;
+            
             room.m_guests = new Guest[numberOfGuests];
+            for (int i = 0; i < numberOfGuests; ++i) {
+                set(room.m_guests[i], nullptr, nullptr, 0);
+            }
         }
     }
 
@@ -61,7 +72,7 @@ namespace seneca {
 
         set(room, tempNumGuests, tempRoomNum);
         for (int i = 0; i < tempNumGuests; ++i) {
-            cout << i << ":" << endl;
+            cout << i + 1 << ":" << endl;
             book(room.m_guests[i]);
         }
     }

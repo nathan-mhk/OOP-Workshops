@@ -23,8 +23,12 @@ namespace seneca {
             first == nullptr || last == nullptr ||
             strcmp(first, "") == 0 || strcmp(last, "") == 0
         ) {
-            vacate(guest);
+            // Initialize to null
+            guest.m_firstName = nullptr;
+            guest.m_lastName = nullptr;
+            guest.m_adult = false;
         } else {
+            // Initialize to the provided values
             guest.m_firstName = new char[strlen(first) + 1];
             strcpy(guest.m_firstName, first);
 
@@ -49,7 +53,7 @@ namespace seneca {
             cout << guest.m_firstName << " " << guest.m_lastName;
             
             if (!guest.m_adult) {
-                cout << "(child)";
+                cout << "(Child)";
             }
             cout << endl;
         }
