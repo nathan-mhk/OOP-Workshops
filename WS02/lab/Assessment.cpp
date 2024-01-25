@@ -14,6 +14,7 @@
 #define TITLE_LEN 60
 
 #include <iostream>
+using namespace std;
 
 namespace seneca {
 
@@ -22,10 +23,10 @@ namespace seneca {
      * true if it was successful, otherwise, it will return false
     */
     bool read(int& value, FILE* fptr) {
-        if (fptr != nullptr) {
-            return fscanf(fptr, "%d", &value) == 1;
+        if (fptr == nullptr) {
+            return false;
         }
-        return false;
+        return fscanf(fptr, "%d", &value) == 1;;
     }
 
     /**
@@ -33,10 +34,10 @@ namespace seneca {
      * true if it was successful, otherwise, it will return false
     */
     bool read(double& value, FILE* fptr) {
-        if (fptr != nullptr) {
-            return fscanf(fptr, "%lf", &value) == 1;
+        if (fptr == nullptr) {
+            return false;
         }
-        return false;
+        return fscanf(fptr, "%lf", &value) == 1;
     }
 
     /**
@@ -45,11 +46,16 @@ namespace seneca {
      * otherwise, it will return false
     */
     bool read(char* cstr, FILE* fptr) {
-        if (fptr != nullptr) {
-            // FIXME
-            return fscanf(fptr, ",%60[^\n]\n", cstr) != EOF;
+        if (fptr == nullptr || fscanf(fptr, ",%60[^\n]\n", cstr) == EOF) {
+            return false;
         }
-        return false;
+
+        // \r\n for Windows files
+        if (cstr[strlen(cstr) - 1] == '\r') {
+            cstr[strlen(cstr) - 1] = '\0';
+        }
+        return true;
+
     }
 
     /**
@@ -67,15 +73,16 @@ namespace seneca {
         double tempMark = 0;
         char tempTitle[TITLE_LEN + 1] = { '\0' };
 
-        if (read(tempMark, fptr) && read(tempTitle, fptr)) {
-            assess.m_mark = new double(tempMark);
-
-            assess.m_title = new char[strlen(tempTitle + 1)];
-            strcpy(assess.m_title, tempTitle);
-
-            return true;
+        if (!read(tempMark, fptr) || !read(tempTitle, fptr)) {
+            return false;
         }
-        return false;
+    
+        assess.m_mark = new double(tempMark);
+
+        assess.m_title = new char[strlen(tempTitle + 1)];
+        strcpy(assess.m_title, tempTitle);
+
+        return true;
     }
 
 
@@ -115,25 +122,20 @@ namespace seneca {
     */
     int read(Assessment*& aptr, FILE* fptr) {
         int numRecords = 0;
-        if (read(numRecords, fptr)) {
-            aptr = new Assessment[numRecords];
-
-            // int numReads = 0;
-            // for (; numReads < numRecords; ++numReads) {
-            //     if (!read(aptr[numReads], fptr)) {
-            //         break;
-            //     }
-            // }
-
-            int numReads = 0;
-            for (; numReads < numRecords && read(aptr[numReads], fptr); ++numReads);
-
-            if (numReads != numRecords) {
-                freeMem(aptr, numReads);
-                return 0;
-            }
-            return numReads;
+        
+        if (!read(numRecords, fptr)) {
+            return 0;
         }
-        return 0;
+        
+        aptr = new Assessment[numRecords];
+
+        int numReads = 0;
+        for (; numReads < numRecords && read(aptr[numReads], fptr); ++numReads);
+
+        if (numReads != numRecords) {
+            freeMem(aptr, numReads);
+            return 0;
+        }
+        return numReads;
     }
 }   
