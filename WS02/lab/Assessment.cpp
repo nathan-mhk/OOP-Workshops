@@ -13,9 +13,6 @@
 
 #define TITLE_LEN 60
 
-#include <iostream>
-using namespace std;
-
 namespace seneca {
 
     /**
@@ -79,7 +76,7 @@ namespace seneca {
     
         assess.m_mark = new double(tempMark);
 
-        assess.m_title = new char[strlen(tempTitle + 1)];
+        assess.m_title = new char[strlen(tempTitle) + 1];
         strcpy(assess.m_title, tempTitle);
 
         return true;
@@ -122,7 +119,7 @@ namespace seneca {
     */
     int read(Assessment*& aptr, FILE* fptr) {
         int numRecords = 0;
-        
+
         if (!read(numRecords, fptr)) {
             return 0;
         }
