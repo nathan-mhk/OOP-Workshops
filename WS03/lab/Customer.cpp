@@ -8,6 +8,8 @@
 */
 
 #include "Customer.h"
+#include <cstring>
+#include <iostream>
 
 namespace seneca {
     /**
@@ -16,7 +18,8 @@ namespace seneca {
      * empty cString or the car pointer is null.
     */
     bool Customer::isEmpty() const {
-        return true;
+        return (m_name == nullptr || strcmp(m_name, "") == 0) &&
+        m_car == nullptr;
     }
 
     /**
@@ -24,7 +27,9 @@ namespace seneca {
      * the pointers to null and the id to 0.
     */
     void Customer::setEmpty() {
-
+        m_id = 0;
+        m_name = nullptr;
+        m_car = nullptr;
     }
 
     /**
@@ -32,7 +37,7 @@ namespace seneca {
      * memory for the m_name member variable.
     */
     void Customer::deallocateMemory() {
-
+        delete[] m_name;
     }
 
     /**
@@ -49,7 +54,24 @@ namespace seneca {
      *       argument
     */
     void Customer::set(int customerId, const char* name, const Car* car) {
+        if (m_car != nullptr) {
+            m_car->deallocateMemory();
+        }
+        deallocateMemory();
+        
+        if (m_car != nullptr) {
+            m_car->setEmpty();
+        }
+        setEmpty();
 
+        if (
+            name != nullptr && strcmp(name, "") != 0 && car != nullptr
+        ) {
+            m_id = customerId;
+            m_name = new char[strlen(name) + 1];
+            strcpy(m_name, name);
+            m_car = const_cast<Car*>(car);
+        }
     }
 
     /**
@@ -68,7 +90,21 @@ namespace seneca {
      * Service Cost:                 50.00
     */
     void Customer::display() const {
+        if (isEmpty() || m_car->isEmpty()) {
+            return;
+        }
+
+        std::cout.width(15);
+        std::cout << std::left << "Customer ID:";
+        std::cout.width(20);
+        std::cout << std::right << m_id << std::endl;
+
+        std::cout.width(15);
+        std::cout << std::left << "First Name:";
+        std::cout.width(20);
+        std::cout << std::right << m_name << std::endl;
         
+        m_car->display();
     }
 
     /**

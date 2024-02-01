@@ -9,6 +9,7 @@
 
 #include "Car.h"
 #include <cstring>
+#include <iostream>
 
 namespace seneca {
     /**
@@ -18,7 +19,8 @@ namespace seneca {
      * empty cstring.
     */
     bool Car::isEmpty() const {
-        return true;
+        return (m_makeModel == nullptr || strcmp(m_makeModel, "") == 0) &&
+            (m_makeModel == nullptr || strcmp(m_serviceDesc, "") == 0);
     }
 
     /**
@@ -27,7 +29,10 @@ namespace seneca {
      * cstring, nullptr and 0.0.
     */
     void Car::setEmpty() {
-
+        strcpy(m_licencePlate, "");
+        m_makeModel = nullptr;
+        m_serviceDesc = nullptr;
+        m_cost = 0;
     }
 
     /**
@@ -35,7 +40,8 @@ namespace seneca {
      * "make and model" and "service description" member variables.
     */
     void Car::deallocateMemory() {
-
+        delete[] m_makeModel;
+        delete[] m_serviceDesc;
     }
 
     /**
@@ -49,8 +55,30 @@ namespace seneca {
      *     - Allocates memory and copies the date for the service description
      *     - Assigns the 'serviceCost' value to the corresponding argument value.
     */
-    void Car::set(const char plateNo[], const char* carMakeModel, const char* serviceDesc, double serviceCost) {
+    void Car::set(
+        const char plateNo[],
+        const char* carMakeModel,
+        const char* serviceDesc,
+        double serviceCost
+    ){
+        deallocateMemory();
+        setEmpty();
 
+        if (
+            strlen(plateNo) != 0 &&
+            (carMakeModel != nullptr && strcmp(carMakeModel, "") != 0) &&
+            (serviceDesc != nullptr && strcmp(serviceDesc, "") != 0)
+        ) {
+            strcpy(m_licencePlate, plateNo);
+
+            m_makeModel = new char[strlen(carMakeModel) + 1];
+            strcpy(m_makeModel, carMakeModel);
+
+            m_serviceDesc = new char[strlen(serviceDesc) + 1];
+            strcpy(m_serviceDesc, serviceDesc);
+
+            m_cost = serviceCost;
+        }
     }
 
     /**
@@ -67,6 +95,29 @@ namespace seneca {
      * Service Cost:                 50.00
     */
     void Car::display() {
+        if (isEmpty()) {
+            return;
+        }
 
+        std::cout.width(15);
+        std::cout << std::left << "License Plate:";
+        std::cout.width(20);
+        std::cout << std::right << m_licencePlate << std::endl;
+
+        std::cout.width(15);
+        std::cout << std::left << "Model:";
+        std::cout.width(20);
+        std::cout << std::right << m_makeModel << std::endl;
+
+        std::cout.width(15);
+        std::cout << std::left << "Service Name:";
+        std::cout.width(20);
+        std::cout << std::right << m_serviceDesc << std::endl;
+
+        std::cout.width(15);
+        std::cout << std::left << "Service Cost:";
+        std::cout.width(20);
+        std::cout.precision(2);
+        std::cout << std::right << std::fixed << m_cost << std::endl;
     }
 }
