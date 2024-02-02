@@ -10,7 +10,7 @@
 #ifndef VENDOR_H
 #define VENDOR_H
 
-#include "IceCream.h"
+#include "Icecream.h"
 
 namespace seneca {
     class Vendor {

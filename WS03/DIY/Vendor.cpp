@@ -8,6 +8,7 @@
 */
 
 #include "Vendor.h"
+#include "Utils.h"
 #include <iostream>
 
 using namespace std;
@@ -15,9 +16,6 @@ using namespace std;
 #define TAX 0.13
 
 namespace seneca {
-    void printBar() {
-        cout << "-----------------------------------" << endl;
-    }
     // Vendor Private Member Functions
     // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
@@ -92,10 +90,10 @@ namespace seneca {
                 cout << endl;
             }
         }
-        printBar();
-        Icecream::printRow("Price: ", totalPrice);
-        Icecream::printRow("Tax: ", totalPrice * TAX);
-        Icecream::printRow("Total Price ($): ", totalPrice + totalPrice * TAX);
+        printLongBar();
+        printRow("Price: ", totalPrice);
+        printRow("Tax: ", totalPrice * TAX);
+        printRow("Total Price ($): ", totalPrice + totalPrice * TAX);
     }
 
     /**

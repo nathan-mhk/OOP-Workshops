@@ -10,7 +10,7 @@
 #ifndef ICECREAM_H
 #define ICECREAM_H
 
-#include <string>
+#include "Utils.h"
 
 #define NUM_FLAVS 5
 #define MAX_SCOOPS 3
@@ -29,8 +29,6 @@ namespace seneca {
             void calTotalPrice();
 
         public:
-            static void printRow(std::string label, double value);
-
             void setEmpty();
             void getOrder();
             void printOrder() const;

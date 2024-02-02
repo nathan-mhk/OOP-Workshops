@@ -7,9 +7,9 @@
  * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 */
 
-#include "IceCream.h"
+#include "Icecream.h"
+#include "Utils.h"
 #include <iostream>
-#include <limits>
 
 using namespace std;
 
@@ -26,55 +26,9 @@ using namespace std;
 #define CHOCO_EXTRA_COST 1
 #define CHOCO_OPT 0
 
-#define LEFT_WIDTH 27
-#define RIGHT_WIDTH 8
-#define PRECISION 2
+
 
 namespace seneca {
-    void displayShortBar() {
-        cout << "----------------" << endl;
-    }
-
-    void clearCin() {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-
-    int getInt(const int minVal, const int maxVal) {
-        int res = minVal - 1;
-
-        while (true) {
-            cout << "> ";
-
-            if (!(cin >> res)) {
-                cout << "Invalid entry, retry" << endl;
-                clearCin();
-                continue;
-            }
-
-            if (res < minVal || res > maxVal) {
-                cout << "Invlid value(1<=val<=" << maxVal << ")" << endl;
-                clearCin();
-                continue;
-            }
-            return res;
-        }
-    }
-
-    bool getYNInput() {
-        string res = "";
-        while (true) {
-            cout << "> ";
-
-            if ((cin >> res) && (res == "Y" || res == "y" || res == "N" || res == "n")) {
-                return res == "Y" || res == "y";
-            }
-            
-            cout << "Only Y or N are acceptable:" << endl;
-            clearCin();
-        }
-    }
-
     // Icecream Private Member Functions
     // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
@@ -102,15 +56,6 @@ namespace seneca {
     // Icecream Public Member Functions
     // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
-    void Icecream::printRow(string label, double value) {
-        cout.width(LEFT_WIDTH);
-        cout << left << label;
-
-        cout.width(RIGHT_WIDTH);
-        cout.precision(PRECISION);
-        cout << right << fixed << value << endl;
-    }
-
     void Icecream::setEmpty() {
         flavOpt = -1;
         numScoops = 0;
@@ -123,9 +68,9 @@ namespace seneca {
     void Icecream::getOrder() {
         setEmpty();
         cout << "Select flavour:" << endl;
-        displayShortBar();
+        printShortBar();
         displayFlavs();
-        displayShortBar();
+        printShortBar();
 
         flavOpt = getInt(1, NUM_FLAVS) - 1;
         isChoco = flavOpt == CHOCO_OPT;
