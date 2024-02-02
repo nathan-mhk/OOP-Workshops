@@ -10,7 +10,6 @@
 #include "IceCream.h"
 #include <iostream>
 #include <limits>
-#include <string>
 
 using namespace std;
 
@@ -76,15 +75,6 @@ namespace seneca {
         }
     }
 
-    void printRow(string label, double value) {
-        cout.width(LEFT_WIDTH);
-        cout << left << label;
-
-        cout.width(RIGHT_WIDTH);
-        cout.precision(PRECISION);
-        cout << right << fixed << value << endl;
-    }
-
     // Icecream Private Member Functions
     // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
@@ -111,6 +101,15 @@ namespace seneca {
     
     // Icecream Public Member Functions
     // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+    void Icecream::printRow(string label, double value) {
+        cout.width(LEFT_WIDTH);
+        cout << left << label;
+
+        cout.width(RIGHT_WIDTH);
+        cout.precision(PRECISION);
+        cout << right << fixed << value << endl;
+    }
 
     void Icecream::setEmpty() {
         flavOpt = -1;
@@ -173,6 +172,10 @@ namespace seneca {
             "Price: ",
             totalPrice
         );
+    }
+
+    const double& Icecream::getTotalPrice() const {
+        return totalPrice;
     }
     // ʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌ
 

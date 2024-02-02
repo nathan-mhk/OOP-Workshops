@@ -8,10 +8,38 @@
 */
 
 #include "Vendor.h"
+#include <iostream>
+
+using namespace std;
+
+#define TAX 0.13
 
 namespace seneca {
+    void printBar() {
+        cout << "-----------------------------------" << endl;
+    }
+    // Vendor Private Member Functions
+    // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+    void Vendor::calTotalPrice() {
+        for (int i = 0; i < numIceCream; ++i) {
+            totalPrice += iceCreams[i].getTotalPrice();
+        }
+    }
+
+    // ʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌ
+    
+    // Vendor Public Member Functions
+    // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+    /**
+     * A member function to set the Vendor object to an empty state.
+    */
     void Vendor::setEmpty() {
-        // TODO
+        clearData();
+        iceCreams = nullptr;
+
+        numIceCream = 0;
     }
 
     /**
@@ -22,15 +50,52 @@ namespace seneca {
     */
 
     void Vendor::takeOrders() {
-        // TODO
+        cout << "Seneca Icecream shop" << endl;
+        cout << "          @" << endl;
+        cout << "        (' .)" << endl;
+        cout << "       (*.`. )" << endl;
+        cout << "        \\###/" << endl;
+        cout << "         \\#/" << endl;
+        cout << "          V" << endl;
+        cout << "How many Icecreams?" << endl;
+
+        while (true) {
+            cout << "> ";
+
+            if ((cin >> numIceCream) && numIceCream > 0) {
+                break;;
+            }
+        }
+
+        iceCreams = new Icecream[numIceCream];
+
+        for (int i = 0; i < numIceCream; ++i) {
+            cout << "Order number " << i + 1 << ":" << endl;
+            iceCreams[i].getOrder();
+        }
+        cout << endl;
+        calTotalPrice();
     }
 
     /**
      * - Prints the details of all the orders
      * - Prints the total price, tax (13%) and the Total price after tax.
     */
-    void Vendor::displayOrders() {
-        // TODO
+    void Vendor::displayOrders() const {
+        cout << "********** Order Summary **********" << endl;
+
+        for (int i = 0; i < numIceCream; ++i) {
+            cout << "Order No: " << i + 1 << ":" << endl;
+            iceCreams[i].printOrder();
+
+            if (i < numIceCream - 1) {
+                cout << endl;
+            }
+        }
+        printBar();
+        Icecream::printRow("Price: ", totalPrice);
+        Icecream::printRow("Tax: ", totalPrice * TAX);
+        Icecream::printRow("Total Price ($): ", totalPrice + totalPrice * TAX);
     }
 
     /**
@@ -39,6 +104,10 @@ namespace seneca {
      * and perform cleanup when the Vendor object is no longer needed.
     */
     void Vendor::clearData() {
-        // TODO
+        // for (int i = 0; i <numIceCream; ++i) {
+        //     iceCreams[i].setEmpty();
+        // }
+        delete[] iceCreams;
     }
+    // ʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌʌ
 }

@@ -14,10 +14,21 @@
 
 namespace seneca {
     class Vendor {
+        private:
+            int numIceCream;
+            Icecream* iceCreams;
+            double totalPrice;
+
+            void calTotalPrice();
+
         public:
+            Vendor() : 
+                numIceCream(0),
+                iceCreams(nullptr)
+            {};
             void setEmpty();
             void takeOrders();
-            void displayOrders();
+            void displayOrders() const;
             void clearData();
     };
 
