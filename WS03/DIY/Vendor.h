@@ -2,7 +2,7 @@
  * Name: Nathan Kong
  * Email: nkong@myseneca.ca
  * ID: 150950236
- * Date: 2024-02-01
+ * Date: 2024-02-03
  * 
  * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 */
@@ -24,14 +24,14 @@ namespace seneca {
         public:
             Vendor() : 
                 numIceCream(0),
-                iceCreams(nullptr)
+                iceCreams(nullptr),
+                totalPrice(0)
             {};
             void setEmpty();
             void takeOrders();
             void displayOrders() const;
             void clearData();
     };
-
 }
 
 #endif

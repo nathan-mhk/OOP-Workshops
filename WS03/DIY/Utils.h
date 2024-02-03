@@ -2,7 +2,7 @@
  * Name: Nathan Kong
  * Email: nkong@myseneca.ca
  * ID: 150950236
- * Date: 2024-02-01
+ * Date: 2024-02-03
  * 
  * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 */
@@ -26,7 +26,7 @@ namespace seneca {
 
     bool getYNInput();
 
-    void printRow(std::string label, double value);
+    void printRow(const std::string label, const double value);
 }
 
 #endif

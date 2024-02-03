@@ -9,9 +9,9 @@
                 "-g",
                 "-Wall",
                 "-std=c++11",
-                "IcecreamTester.cpp", "Icecream.cpp",       // DIY Icecream
-                "main.cpp", "Vendor.cpp", "Icecream.cpp",   // DIY main
-                "main.cpp", "Car.cpp", "Customer.cpp",      // lab
+                // "IcecreamTester.cpp", "Icecream.cpp", "Utils.cpp",    // DIY Icecream
+                "main.cpp", "Vendor.cpp", "Icecream.cpp", "Utils.cpp",   // DIY main
+                // "main.cpp", "Car.cpp", "Customer.cpp",                // lab
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

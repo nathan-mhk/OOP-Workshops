@@ -1,0 +1,91 @@
+********** Order Summary **********
+Order No: 1:
+Order details:                Price
+-----------------------------------
+Number of scoops, 3 total:    15.00
+Chocolate flavour:             3.00
+Vanilla Wafer:                 5.00
+Price:                        23.00
+
+Order No: 2:
+Order details:                Price
+-----------------------------------
+Number of scoops, 2 total:    10.00
+Mango flavour
+Vanilla Wafer:                 0.00
+Price:                        10.00
+-----------------------------------
+
+
+==216075== Conditional jump or move depends on uninitialised value(s)
+==216075==    by 0x402C3F: seneca::printRow(std::string, double) (Utils.cpp:73)
+==216075==    by 0x402679: seneca::Vendor::displayOrders() const (Vendor.cpp:94)
+==216075==    by 0x402D65: main (main_prof.cpp:22)
+==216075==  Uninitialised value was created by a stack allocation
+==216075==    at 0x402D2E: main (main_prof.cpp:18)
+
+
+==216075== Use of uninitialised value of size 8
+==216075==    by 0x402C3F: seneca::printRow(std::string, double) (Utils.cpp:73)
+==216075==    by 0x402679: seneca::Vendor::displayOrders() const (Vendor.cpp:94)
+==216075==    by 0x402D65: main (main_prof.cpp:22)
+==216075==  Uninitialised value was created by a stack allocation
+==216075==    at 0x402D2E: main (main_prof.cpp:18)
+
+
+==216075== Syscall param write(buf) points to uninitialised byte(s)
+==216075==    by 0x402C4C: seneca::printRow(std::string, double) (Utils.cpp:73)
+==216075==    by 0x402679: seneca::Vendor::displayOrders() const (Vendor.cpp:94)
+==216075==    by 0x402D65: main (main_prof.cpp:22)
+==216075==  Address 0x402301e is in a rw- anonymous segment
+==216075==  Uninitialised value was created by a stack allocation
+==216075==    at 0x402D2E: main (main_prof.cpp:18)
+
+Price:                        33.00
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+
+==216075== Conditional jump or move depends on uninitialised value(s)
+==216075==    by 0x402C3F: seneca::printRow(std::string, double) (Utils.cpp:73)
+==216075==    by 0x4026DD: seneca::Vendor::displayOrders() const (Vendor.cpp:95)
+==216075==    by 0x402D65: main (main_prof.cpp:22)
+==216075==  Uninitialised value was created by a stack allocation
+==216075==    at 0x402D2E: main (main_prof.cpp:18)
+
+
+==216075== Use of uninitialised value of size 8
+==216075==    by 0x402C3F: seneca::printRow(std::string, double) (Utils.cpp:73)
+==216075==    by 0x4026DD: seneca::Vendor::displayOrders() const (Vendor.cpp:95)
+==216075==    by 0x402D65: main (main_prof.cpp:22)
+==216075==  Uninitialised value was created by a stack allocation
+==216075==    at 0x402D2E: main (main_prof.cpp:18)
+
+Tax:                           4.29
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+
+==216075== Use of uninitialised value of size 8
+==216075==    by 0x402C3F: seneca::printRow(std::string, double) (Utils.cpp:73)
+==216075==    by 0x40274E: seneca::Vendor::displayOrders() const (Vendor.cpp:96)
+==216075==    by 0x402D65: main (main_prof.cpp:22)
+==216075==  Uninitialised value was created by a stack allocation
+==216075==    at 0x402D2E: main (main_prof.cpp:18)
+
+
+==216075== Conditional jump or move depends on uninitialised value(s)
+==216075==    by 0x402C3F: seneca::printRow(std::string, double) (Utils.cpp:73)
+==216075==    by 0x40274E: seneca::Vendor::displayOrders() const (Vendor.cpp:96)
+==216075==    by 0x402D65: main (main_prof.cpp:22)
+==216075==  Uninitialised value was created by a stack allocation
+==216075==    at 0x402D2E: main (main_prof.cpp:18)
+
+Total Price ($):              37.29
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+==216075== HEAP SUMMARY:
+==216075== All heap blocks were freed -- no leaks are possible
+==216075== ERROR SUMMARY: 361 errors from 134 contexts (suppressed: 0 from 0)
