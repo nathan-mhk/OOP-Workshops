@@ -49,8 +49,9 @@ namespace seneca{
     * value of the parameter. The parameter will also have
     * a default value of "Stratocaster".
    */
-   Guitar::Guitar(const char* mod = "Stratocaster") {
-
+   Guitar::Guitar(const char* mod)
+    : m_strings(nullptr), m_numStrings(0) {
+      strcpy(m_model, mod);
    }
 
    /**
@@ -66,7 +67,18 @@ namespace seneca{
     * set to an empty state.
    */
    Guitar::Guitar(GuitarStr strs[], int ns, const char* mod) {
+      if (!strs || ns < 0 || !mod || !mod[0]) {
+         Guitar();
+      } else {
+         m_numStrings = ns;
 
+         m_strings = new GuitarStr[ns];
+         for (int i = 0; i < ns; ++i) {
+            m_strings[i] = strs[i];
+         }
+
+         strcpy(m_model, mod);
+      }
    }
 
    /**
@@ -74,7 +86,8 @@ namespace seneca{
     * the current object.
    */
    Guitar::~Guitar() {
-
+      delete[] m_strings;
+      m_strings = nullptr;
    }
 
    /**
@@ -89,7 +102,11 @@ namespace seneca{
     * false otherwise.
    */
    bool Guitar::changeString(const GuitarStr& gs, int sn) {
-      return true;
+      if (sn >= 0 && sn < m_numStrings) {
+         m_strings[sn] = gs;
+         return true;
+      }
+      return false;
    }
 
    /**
@@ -101,7 +118,14 @@ namespace seneca{
     * the GuitarStr array.
    */
    void Guitar::reString(GuitarStr strs[], int ns) {
+      deString();
+      
+      m_numStrings = ns;
+      m_strings = new GuitarStr[ns];
 
+      for (int i = 0; i < ns; ++i) {
+         m_strings[i] = strs[i];
+      }
    }
 
    /**
@@ -111,7 +135,9 @@ namespace seneca{
     * m_numStrings to an empty state.
    */
    void Guitar::deString() {
-
+      delete[] m_strings;
+      m_strings = nullptr;
+      m_numStrings = 0;
    }
 
    /**
@@ -119,7 +145,7 @@ namespace seneca{
     * GuitarStr and false otherwise.
    */
    bool Guitar::strung() const {
-      return true;
+      return m_strings;
    }
 
    /**
@@ -128,7 +154,12 @@ namespace seneca{
     * parameter and false otherwise.
    */
    bool Guitar::matchGauge(double ga) const {
-      return true;
+      for (int i = 0; i < m_numStrings; ++i) {
+         if (m_strings[i].gauge() == ga) {
+            return true;
+         }
+      }
+      return false;
    }
 
    /**
@@ -159,6 +190,24 @@ namespace seneca{
     * regardless of what is printed out.
    */
    std::ostream& Guitar::display(std::ostream& os) const {
+      if (!m_numStrings) {
+         os << "***Empty Guitar***" << std::endl;
+      } else {
+         os << "Guitar Model: " << m_model << std::endl;
+         os << "Strings: " << m_numStrings << std::endl;
+
+         if (strung()) {
+            for (int i = 0; i < m_numStrings; ++i) {
+               os << "#" << i + 1;
+
+               os.width(MAT_LEN);
+               os << std::right << m_strings[i].material() << " | ";
+
+               os.precision(PREC);
+               os << std::fixed << m_strings[i].gauge() << std::endl;
+            }
+         }
+      }
       return os;
    }
 }

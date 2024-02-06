@@ -33,6 +33,7 @@ namespace seneca{
 
   const int MAT_LEN = 10;
   const int NAME_LEN = 15;
+  const int PREC = 1;
 
   class GuitarStr {
      char m_material[MAT_LEN]{};
