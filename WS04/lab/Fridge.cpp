@@ -44,10 +44,20 @@ namespace seneca{
       m_weight = wei;
    }
 
-   // FIXME
-   Fridge::Fridge() : m_Foods(), m_numFoods(0), m_model(nullptr) {}
+   Fridge::Fridge() : m_numFoods(0), m_model(nullptr) {}
 
    Fridge::Fridge(Food foods[], int numFoods, const char* modelName) {
+      Fridge();
+      if (numFoods > 0 && modelName && modelName[0]) {
+         m_numFoods = numFoods;
+         
+         m_model = new char[strlen(modelName) + 1];
+         strcpy(m_model, modelName);
+
+         for (int i = 0; i < numFoods || i < FRIDGE_CAP; ++i) {
+            m_foods[i] = foods[i];
+         }
+      }
    }
 
    Fridge::~Fridge() {
@@ -64,8 +74,11 @@ namespace seneca{
     * and false otherwise.
    */
    bool Fridge::addFood(const Food& f) {
-      // TODO
-      return true;
+      if (m_numFoods < FRIDGE_CAP) {
+         m_foods[m_numFoods++] = f;
+         return true;
+      }
+      return false;
    }
 
    /**
@@ -76,7 +89,12 @@ namespace seneca{
     * allocate enough memory to store the provided value and copy it to m_model.
    */
    void Fridge::changeModel(const char* m) {
-      // TODO
+      if (m && m[0]) {
+         delete[] m_model;
+
+         m_model = new char[strlen(m) + 1];
+         strcpy(m_model, m);
+      }
    }
 
    /**
@@ -84,7 +102,7 @@ namespace seneca{
     * considered to be full if m_numFoods has reached FRIDGE_CAP.
    */
    bool Fridge::fullFridge() const {
-      // TODO
+      return m_numFoods == FRIDGE_CAP;
    }
 
    /**
@@ -94,8 +112,12 @@ namespace seneca{
     * return false.
    */
    bool Fridge::findFood(const char* f) const {
-      // TODO
-      return true;
+      for (int i = 0; i < m_numFoods; ++i) {
+         if (strcmp(m_foods[i].name(), f) == 0) {
+            return true;
+         }
+      }
+      return false;
    }
 
    /**
@@ -121,9 +143,23 @@ namespace seneca{
     * 
     * This function will return the parameter os.
    */
-   std::ostream& Fridge::display(std::ostream& os = std::cout) const {
-      // TODO
+   std::ostream& Fridge::display(std::ostream& os) const {
+      if (this->m_model && this->m_model[0]) {
+         os << "Fridge Model: " << this->m_model << std::endl;
+
+         os << "Food count: " << this->m_numFoods << " ";
+         os << "Capacity: " << FRIDGE_CAP << std::endl;
+
+         os << "List of Foods" << std::endl;
+
+         if (m_numFoods > 0) {
+            for (int i = 0; i < m_numFoods; ++i) {
+               os.width(NAME_LEN);
+               os << std::right << m_foods[i].name() << " | ";
+               os << m_foods[i].weight() << std::endl;
+            }
+         }
+      }
       return os;
    }
-  
 }

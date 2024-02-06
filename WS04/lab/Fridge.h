@@ -51,11 +51,10 @@ namespace seneca{
       int m_numFoods;
       char* m_model;
 
+   public:
       Fridge();
       Fridge(Food foods[], int numFoods, const char* modelName = "Ice Age");
       ~Fridge();
-
-   public:
 
       /**
        * This function will attempt to add a Food item to the m_foods array.
