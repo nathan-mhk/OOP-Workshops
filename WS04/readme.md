@@ -105,7 +105,7 @@ A Food item is defined by the following struct (see provided Fridge.h/.cpp):
 
 ```C++
 // Header
-#define NAME_LEN 10
+#define NAME_LEN 20
 
   class Food{
     char m_name[NAME_LEN]{};
