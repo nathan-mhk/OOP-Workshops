@@ -166,7 +166,7 @@ The Customer class is typically defined in a header file named Customer.h and im
 # Private data members
 - m_id: an integer holds the customer ID
 - m_name: that is held dynamically in a C string. (char *)
-- m_car: that is a pointer to a Car. (customer's car).
+- m_car: that is a pointer to an unmodifiable Car object. (customer's car).
   > Note that this is not dynamically allocated. It is only a pointer to be set to the address of a "Car" object that exists somewhere.
 
 
