@@ -62,6 +62,7 @@ namespace seneca{
 
    Fridge::~Fridge() {
       delete[] m_model;
+      m_model = nullptr;
    }
 
    /**
@@ -144,10 +145,10 @@ namespace seneca{
     * This function will return the parameter os.
    */
    std::ostream& Fridge::display(std::ostream& os) const {
-      if (this->m_model && this->m_model[0]) {
-         os << "Fridge Model: " << this->m_model << std::endl;
+      if (m_model && m_model[0]) {
+         os << "Fridge Model: " << m_model << std::endl;
 
-         os << "Food count: " << this->m_numFoods << " ";
+         os << "Food count: " << m_numFoods << " ";
          os << "Capacity: " << FRIDGE_CAP << std::endl;
 
          os << "List of Foods" << std::endl;
