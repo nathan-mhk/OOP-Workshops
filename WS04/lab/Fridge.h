@@ -30,11 +30,10 @@
 #include <cstring>
 #include <iostream>
 
-#define FRIDGE_CAP 3
-
 namespace seneca{
 
    const int NAME_LEN = 20;
+   const int FRIDGE_CAP = 3;
 
    class Food {
       char m_name[NAME_LEN]{};

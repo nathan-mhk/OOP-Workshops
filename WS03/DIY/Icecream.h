@@ -16,8 +16,6 @@
 #define MAX_SCOOPS 3
 
 namespace seneca {
-    void displayShortBar();
-
     class Icecream {
         private:
             const char* flavStr[NUM_FLAVS];
