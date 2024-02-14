@@ -1,3 +1,12 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-02-
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include <cstring>

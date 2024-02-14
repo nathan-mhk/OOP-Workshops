@@ -1,0 +1,11 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-02-
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In part 1 of this workshop, I learned about operator overloading. We have overloaded on most kinds of operators, including comparison operators, addition/subtraction operators, assignment operators, and conversion operator. I also learned about the convenience of modular programming - a lot of the functions shall be designed and written in a way that they are flexible and re-usable. I also practiced the usage of the this pointer, and returning by references instead of values. In addition, for operators that cannot be implemented as a public member function, we will have to implement them outside of the class, as a global function.
+
