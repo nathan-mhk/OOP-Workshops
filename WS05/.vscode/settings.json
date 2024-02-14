@@ -2,6 +2,8 @@
     "files.associations": {
         "atomic": "cpp",
         "iterator": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

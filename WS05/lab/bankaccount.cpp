@@ -15,7 +15,7 @@
  * Name: Nathan Kong
  * Email: nkong@myseneca.ca
  * ID: 150950236
- * Date: 2024-02-
+ * Date: 2024-02-13
  * 
  * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 */
@@ -60,12 +60,23 @@ namespace seneca
 	}
 
 	// ADD: Type Conversion, Unary & Binary Operators; + Additional Methods
+
+	// Accessors
+	const char* bankAccount::getUserName() const {
+		return m_userName;
+	}
+
+	const bool bankAccount::isChecking() const {
+		return m_checking;
+	}
+
+
     /**
 	 * Returns true if the account isOpen(); false otherwise. This method
 	 * does not modify the object.
 	 */
 	bankAccount::operator bool() const {
-		return true;
+		return isOpen();
 	}
 
 	/**
@@ -73,7 +84,7 @@ namespace seneca
 	 * object
 	 */
 	bankAccount::operator double() const {
-		return 0;
+		return m_funds;
 	}
 
 	/**
@@ -84,6 +95,13 @@ namespace seneca
 	 * current object.
 	 */
 	bankAccount& bankAccount::operator++() {
+		if (m_funds > 0 && isOpen()) {
+			if (m_checking) {
+				m_funds += m_funds * m_checkIntRate;
+			} else {
+				m_funds += m_funds * m_savinIntRate;
+			}
+		}
 		return *this;
 	}
 
@@ -95,6 +113,13 @@ namespace seneca
 	 * reference to the current object.
 	 */
 	bankAccount& bankAccount::operator--() {
+		if (isOpen()) {
+			if (m_checking) {
+				m_funds -= m_monthlyTransactions * m_checkTransacFee;
+			} else {
+				m_funds -= m_monthlyTransactions * m_savinTransacFee;
+			}
+		}
 		return *this;
 	}
 
@@ -108,8 +133,19 @@ namespace seneca
 	 * 
 	 * Deposit $100.00 for Joe Williams
 	 */
-	bool bankAccount::operator+=(double) {
-		return true;
+	bool bankAccount::operator+=(double deposits) {
+		if (isOpen()) {
+			m_funds += deposits;
+			++m_monthlyTransactions;
+
+			if (deposits >= 0) {
+				cout.precision(PRECISION);
+				cout << "Deposit $" << fixed << deposits << " for " << m_userName << endl;
+			}
+
+			return true;
+		}
+		return false;;
 	}
 
 	/**
@@ -123,8 +159,23 @@ namespace seneca
 	 * 
 	 * Withdraw $5.00 for Raya Chandok
 	 */
-	bool bankAccount::operator-=(double) {
-		return true;
+	bool bankAccount::operator-=(double withdrawal) {
+		// if (isOpen()) {
+		// 	*this += -1 * withdrawal;
+
+		// 	cout.precision(PRECISION);
+		// 	cout << "Withdraw $" << fixed << withdrawal << " for " << m_userName << endl;
+		// 	return true;
+		// }
+		// return false;
+
+		// isOpen() check is performed within `operator+=` already
+		if (*this += -1 * withdrawal) {
+			cout.precision(PRECISION);
+			cout << "Withdraw $" << fixed << withdrawal << " for " << m_userName << endl;
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -135,8 +186,12 @@ namespace seneca
 	 * > Note that the funds are considered the same if their difference is
 	 * > less than `0.001`
 	 */
-	bool bankAccount::operator==(const bankAccount&) const {
-		return true;
+	bool bankAccount::operator==(const bankAccount& that) const {
+		return (
+			strcmp(m_userName, that.getUserName()) == 0 &&
+			(double)*this - (double)that < DIFF &&
+			m_checking == that.isChecking()
+		);
 	}
 
 	/**
@@ -144,8 +199,8 @@ namespace seneca
 	 * only be used if the account has been opened. This method does not
 	 * modify the object.
 	 */
-	bool bankAccount::operator>(double) const {
-		return true;
+	bool bankAccount::operator>(double value) const {
+		return isOpen() && m_funds > value;
 	}
 
 	/**
@@ -154,8 +209,8 @@ namespace seneca
 	 * the object. It can be implemented by simply invoking `operator>` from
 	 * above and reversing the result.
 	 */
-	bool bankAccount::operator<=(double) const {
-		return true;
+	bool bankAccount::operator<=(double value) const {
+		return !(*this > value);
 	}
 
 	/**
@@ -170,8 +225,17 @@ namespace seneca
 	 * 
 	 * Transfer $100.00 from Joe Williams to Cindy Kofler
 	 */
-	bool bankAccount::operator<<(bankAccount&) {
-		return true;
+	bool bankAccount::operator<<(bankAccount& that) {
+		if (isOpen() && that.isOpen() && (double)that > 0) {
+
+			cout.precision(PRECISION);
+			cout << "Transfer $" << fixed << (double)that << " from " << that.getUserName() << " to " << m_userName << endl;
+
+			*this += (double)that;
+			that -= (double)that;
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -187,7 +251,31 @@ namespace seneca
 	 * Display Account -> User:------- NOT OPEN
 	 */
 	void bankAccount::display(void) const {
-		return;
+		cout << "Display Account -> User:";
+		cout.fill('-');
+		cout.width(NAME_WIDTH);
+		cout << right;
+
+		if (isOpen()) {
+			cout << m_userName << " | ";
+
+			cout.fill(' ');
+			cout.width(TYPE_WIDTH);
+			cout << right << (m_checking ? "Checking" : "Savings") << " | ";
+
+			cout << "Balance: $ ";
+			cout.width(BAL_WIDTH);
+			cout.precision(PRECISION);
+			cout << right << m_funds << " | ";
+
+			cout << "Transactions:";
+			cout.fill('0');
+			cout.width(TRANSCAC_WIDTH);
+			cout << right << m_monthlyTransactions << endl;
+
+		} else {
+			cout << " NOT OPEN" << endl;
+		}
 	}
 
 	// ADD: Global Helper Functions
@@ -202,7 +290,10 @@ namespace seneca
     * comparison.
    */
    bool operator>(double lhs, const bankAccount& rhs) {
-	return true;
+	if ((bool)rhs) {
+		return lhs > (double)rhs;
+	}
+	return false;
    }
 
    /**
@@ -212,6 +303,6 @@ namespace seneca
     * the result.
    */
    bool operator<=(double lhs, const bankAccount& rhs) {
-	return true;
+	return !(lhs > rhs);
    }
 }

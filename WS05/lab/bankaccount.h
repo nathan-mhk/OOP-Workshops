@@ -15,7 +15,7 @@
  * Name: Nathan Kong
  * Email: nkong@myseneca.ca
  * ID: 150950236
- * Date: 2024-02-
+ * Date: 2024-02-13
  * 
  * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 */
@@ -29,6 +29,12 @@
 namespace seneca
 {
    const int	 ACCT_MAXLEN_USER = 16;					// Max Length of user name
+   const int    PRECISION = 2;
+   const double DIFF = 0.001;
+   const int NAME_WIDTH = ACCT_MAXLEN_USER;
+   const int TYPE_WIDTH = 8;
+   const int BAL_WIDTH = 7;
+   const int TRANSCAC_WIDTH = 3;
 
    // Class Definition
    class bankAccount
@@ -42,9 +48,9 @@ namespace seneca
       int		m_monthlyTransactions;
 
       const double m_checkTransacFee = 1.25;
-      const double m_checkIntRate = 0.5;
+      const double m_checkIntRate = 0.005;
       const double m_savinTransacFee = 3.5;
-      const double m_savinIntRate = 2.5;
+      const double m_savinIntRate = 0.025;
 
       bool isOpen() const;
    public:
@@ -52,6 +58,11 @@ namespace seneca
       bool setup(const char* name, bool checking);
 
       // ADD: Type Conversion, Unary, Binary Operators & Additional Methods
+
+      // Accessors
+      const char* getUserName() const;
+      const bool isChecking() const;
+
       
       /**
        * Returns true if the account isOpen(); false otherwise. This method
