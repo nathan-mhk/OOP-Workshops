@@ -118,5 +118,6 @@ void displayDetails(const Hero* heroes, int size) {
 	cout << "Details of our heroes are as follow: " << endl;
 	for (int i = 0; i < size; i++) {
 		heroes[i].display() << endl;
+		heroes[i].display().operator<<(endl);
 	}
 }

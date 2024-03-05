@@ -38,7 +38,7 @@ namespace seneca {
         const int getPowerLevel() const;
 
         // Display Function
-        std::ostream& display(std::ostream& ost = std::cout) const;
+        std::ostream& display(std::ostream& ostr = std::cout) const;
 
         // Operator and Conversion Overloads
 
@@ -71,10 +71,11 @@ namespace seneca {
         // Insertion/Extraction Operator Overloads
         Hero& operator<<(Power& rhs);
 
+        friend const void operator>>(const Power& lhs, Hero& rhs);
     };
 
     // Insertion/Extraction Operator Overloads
-    const Power& operator>>(const Power& lhs, Hero& rhs);
+    // const Power& operator>>(const Power& lhs, Hero& rhs);
 }
 
 #endif

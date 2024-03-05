@@ -115,8 +115,11 @@ namespace seneca {
     }
 
     // Insertion/Extraction Operator Overloads
-    const Power& operator>>(const Power& lhs, Hero& rhs) {
+    const void operator>>(const Power& lhs, Hero& rhs) {
         rhs += lhs;
-        return lhs;
     }
+    // const Power& operator>>(const Power& lhs, Hero& rhs) {
+    //     rhs += lhs;
+    //     return lhs;
+    // }
 }
