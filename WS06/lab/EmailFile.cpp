@@ -197,6 +197,7 @@ namespace seneca
             }
         }
         m_noOfEmails = i;
+        ifs.close();
     }
 
     /**
@@ -204,18 +205,6 @@ namespace seneca
     */
     EmailFile::operator bool() const {
         return m_emailLines && m_filename && m_noOfEmails;
-    }
-
-    const char* EmailFile::getFileName() const {
-        return m_filename;
-    }
-
-    const int EmailFile::getNumOfEmails() const {
-        return m_noOfEmails;
-    }
-
-    const Email& EmailFile::getEmail(const int i) const {
-        return m_emailLines[i];
     }
 
     /**
@@ -235,14 +224,14 @@ namespace seneca
         if (*this != e && e) {
             setEmpty();
 
-            setFilename(e.getFileName());
+            setFilename(e.m_filename);
 
-            m_noOfEmails = e.getNumOfEmails();
+            m_noOfEmails = e.m_noOfEmails;
             
             m_emailLines = new Email[m_noOfEmails];
 
             for (int i = 0; i < m_noOfEmails; ++i) {
-                m_emailLines[i] = e.getEmail(i);
+                m_emailLines[i] = e.m_emailLines[i];
             }
         }
         return *this;
@@ -352,7 +341,7 @@ namespace seneca
         if (!*this || !obj) return;
 
         // Step 2
-        const int totalEmails = m_noOfEmails + obj.getNumOfEmails();
+        const int totalEmails = m_noOfEmails + obj.m_noOfEmails;
 
         // Step 3
         Email* emails = new Email[totalEmails];
@@ -363,8 +352,8 @@ namespace seneca
             emails[i] = m_emailLines[i];
         }
 
-        for (int j = 0; j < obj.getNumOfEmails(); ++i, ++j) {
-            emails[i] = obj.getEmail(j);
+        for (int j = 0; j < obj.m_noOfEmails; ++i, ++j) {
+            emails[i] = obj.m_emailLines[j];
         }
 
         // Step 5

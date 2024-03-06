@@ -87,10 +87,6 @@ namespace seneca{
 		*/
 		operator bool()const;
 
-		const char* getFileName() const;
-		const int getNumOfEmails() const;
-		const Email& getEmail(const int i = 0) const;
-		
 	public:
 		
 		std::ostream& view(std::ostream& ostr) const;
