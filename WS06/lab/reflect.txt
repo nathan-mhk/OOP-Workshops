@@ -1,0 +1,27 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-03-05
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In this workshop, I've learned about some simple file operations like 
+reading from files and writing to files. I've also learned about 
+using the `friend` keyword to grant access to another class. This 
+could be useful when we want to encapsulate a higher-level operation 
+and hide some lower-level implementations. Overall, I don't find this 
+workshop to be too difficult.
+
+In this project's milestone, I've once again had a revision on 
+operators overloading, input validation, and some simple string 
+operations. I've also learned how to make a input-handling function 
+adheres to the istream standards - by setting the state of the input 
+stream object instead of clearing or flushing the stream buffer. 
+Overall, I found this workshop to be a bit more challenging than the 
+workshop, as we do not have explicit instructions on exactly what 
+lines of code we should write. Instead, we are given a higher-level 
+overview/instructions on the functionality of each of the methods. 
+And we have to think carefully while implementing the functions, in 
+order to create a concise program.
