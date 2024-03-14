@@ -1,0 +1,32 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-03-14
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In this workshop, I've practiced how to do inheritance in C++. Our base 
+class is `BankAccount`, and `SavingsAccount` is our derived class. With 
+inheritance, we can simplify our class design, and encapsulate some 
+core features/attributes of multiple classes into one high-level class. 
+This makes the program scalable and expandable. For instance, it would 
+be easier to create an additional "CheckingAccount" class by simply 
+extending the `BankAccount` class.
+
+Overall, this workshop is not too difficult. One of the things that 
+cost me most of the time while working on this workshop is that istream 
+buffer. Without clearing the buffer properly, subsequent `getline()` 
+calls will be "skipped", leading to empty inputs/results 
+
+In this project milestone, I've practiced how to design an abstract 
+base class, and how to declare pure virtual functions. Virtual 
+functions are used in abstract base classes to enforce dynamic binding 
+instead of early binding. Dynamic binding prevents ambiguous situation 
+where the program invokes functions of bases classes when functions of 
+the derived class should be invoked.
+
+Overall, the difficulty to complete this milestone is quite low. 
+However, to fully understand the intention behind abstract base 
+classes, and the usage of it is quite difficult.
