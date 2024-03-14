@@ -18,9 +18,9 @@ using namespace std;
 namespace seneca {
     const int NAME_LEN = 50;
     class BankAccount {
-        char m_name[NAME_LEN]{};
-        Date* m_openDate{};
-        DepositInfo* m_depInfo{};
+        char m_name[NAME_LEN + 1]{};
+        Date m_openDate{};
+        DepositInfo m_depInfo{};
         double m_balance{};
 
     protected:
@@ -36,7 +36,6 @@ namespace seneca {
 
     public:
         BankAccount(const char* name, Date openDate, DepositInfo depInfo, double balance);
-        ~BankAccount();
 
         /**
          * A query that inserts into out the content of the object as formatted

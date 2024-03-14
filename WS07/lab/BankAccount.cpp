@@ -9,6 +9,7 @@
 
 #include "BankAccount.h"
 #include <cstring>
+#include <limits>
 
 namespace seneca {
     double BankAccount::getBalance() const {
@@ -29,18 +30,11 @@ namespace seneca {
         out << "$" << fixed << amount;
     }
 
-    BankAccount::BankAccount(const char* name, Date openDate, DepositInfo depInfo, double balance) : m_balance(balance) {
+    BankAccount::BankAccount(
+        const char* name, Date openDate,
+        DepositInfo depInfo, double balance
+    ) : m_openDate(openDate), m_depInfo(depInfo), m_balance(balance) {
         strcpy(m_name, name);
-        m_openDate = new Date(openDate.getDay(), openDate.getMonth(), openDate.getYear());
-        m_depInfo = new DepositInfo(depInfo.getTransit(), depInfo.getInstitution(), depInfo.getAccount());
-    }
-
-    BankAccount::~BankAccount() {
-        delete m_openDate;
-        delete m_depInfo;
-
-        m_openDate = nullptr;
-        m_depInfo = nullptr;
     }
 
     /**
@@ -52,12 +46,10 @@ namespace seneca {
      * ```
     */
     ostream& BankAccount::write(ostream& out) const {
-        out << ">> " << m_name << "|";
+        out << ">> " << m_name << " | ";
         writeCurrency(out, m_balance);
-        out << " | ";
-        m_openDate->write(out);
-        out << " | ";
-        m_depInfo->write(out);
+        out << " | " << m_openDate << " | " << m_depInfo;
+
         return out;
     }
 
@@ -74,15 +66,14 @@ namespace seneca {
     */
     istream& BankAccount::read(istream& in) {
         cout << "Name: ";
-        in >> m_name;
+        in.getline(m_name, NAME_LEN);
 
         cout << "Opening Balance: ";
         in >> m_balance;
 
         cout << "Date Opened ";
-        m_openDate->read(in);
+        in >> m_openDate >> m_depInfo;
 
-        m_depInfo->read(in);
         return in;
     }
 
@@ -92,7 +83,16 @@ namespace seneca {
      * `BankAccount`.
     */
     istream& operator>>(istream& in, BankAccount& acct) {
-        return acct.read(in);
+        do {
+            acct.read(in);
+
+            if (!in.fail()) {
+                in.clear();
+                in.ignore(std::numeric_limits<streamsize>::max(), '\n');
+                break;
+            }
+        } while (true);
+        return in;
     }
 
     /**
