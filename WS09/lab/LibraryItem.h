@@ -17,13 +17,15 @@ namespace seneca {
         char* m_title {};
         int m_year {};
 
+        void copyName(const char* title);
+
     public:
         LibraryItem();
         LibraryItem(const char* title, const int year);
 
         LibraryItem(const LibraryItem& other);
         LibraryItem& operator=(const LibraryItem& other);
-        ~LibraryItem();
+        virtual ~LibraryItem();
         
         virtual std::ostream& display(std::ostream& ostr = std::cout) const;
     };

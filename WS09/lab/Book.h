@@ -16,12 +16,14 @@ namespace seneca {
     class Book : public LibraryItem {
         char* m_author {};
 
+        void copyAuthor(const char* author);
+
     public:
         Book(const char* title, const int year, const char* author);
 
         Book(const Book& other);
         Book& operator=(const Book& other);
-        ~Book();
+        virtual ~Book();
 
         virtual std::ostream& display(std::ostream& ostr = std::cout) const;
         bool operator>(const Book& other) const;
