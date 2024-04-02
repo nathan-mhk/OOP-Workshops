@@ -1,0 +1,28 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-04-02
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In this workshop, I've practiced on the idea of function templates and class 
+templates. Templates allows developers to write more flexible, efficient, and 
+reusable code. Instead of writing multiple versions of the same function or 
+class to accommodate different data types, templates allow us to write a generic 
+version that can be accommodated with any data type.
+
+Overall, this workshop is not too difficult. Although one of the slightly tricky 
+part is understanding the type requirements of the functions and classes. 
+Phrases like "with elements of type, first type-parameter", "The return type of 
+matches is to be set to the type of the returned data.", "types of the array 
+elements are to be of the type, type parameter." can be a bit confusing at first 
+glance. 
+
+In milestone 5, we only have one template function - `removeDynamicElement()`. 
+This function was defined within the `Utils` module, and is a very clear example 
+of the benefits and conveniences function templates can bring us. A lot of 
+operations in the milestones can be encapsulated into functions. However, for 
+some operations that are more abstract, like removing a dynamically allocated 
+element from an array, we can use function templates.
