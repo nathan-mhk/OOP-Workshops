@@ -1,0 +1,27 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-02-06
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In this workshop, I had a revision on constructors and destructor. Technically,
+in previous workshops, the functions we implemented are already doing the same
+thing as constructors and destructor. However, in this workshop we are doing
+the it the "proper" way. I've also did a revision on member initialization list.
+A new thing I learned in this workshop (or probably I just had forgotten) is the
+usage of ostream (in the display() functions of both parts of this workshop). By
+receiving and returning an ostream object reference, and encapsulate the whole
+output-to-output-stream procedure as a independent function, we are able to
+provide the flexibility to the users of our program. Users will be able to
+freely decide which kind of output stream they would like to use. Whether it is
+simply `cout`, a file stream, a log file, or the error stream. And because we
+are returning the ostream as a reference, users of our program would be able to
+cascade other ostream objects with the `<<` operator, had we changed the
+function into a globally operator-overloaded function
+(std::ostream& operator<<(std::ostream& os, const Guitar& guitar);)
+
+Overall, I found this workshop easier than the last one. However, this makes
+sense as we are focusing on constructors and destructor in this workshop.

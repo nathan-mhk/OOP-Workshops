@@ -1,0 +1,27 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-03-21
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In this workshop, I've practiced on the idea of inheritance with dynamically 
+allocated resources on both the base class and the derived class. There are 
+some essential things that we have to be aware of when designing and 
+implementing polymorphic classes:
+1. Be sure to invoke the base class's functions beforehand.
+2. Destructors should be declared as virtual.
+3. The scope operator is essential to tell compiler which (base or derived) 
+   function to invoke. 
+
+Overall, this workshop is not too difficult.
+
+In this project milestone, I've practices the usage of ABC. We have designed 
+and implemented 2 concrete classes that are derived from the ABC that we have 
+designed and implemented in the last milestone. This milestone teaches us the 
+brief idea on the benefits and the usage of ABCs.
+
+Overall, this milestone isn't too challenging. However, I do have to go back to 
+my previous work to fix some minor bugs here and there.

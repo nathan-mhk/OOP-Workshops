@@ -1,0 +1,32 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-03-18
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In this workshop, I've practiced on the idea of interface, pure virtual 
+functions, and abstract base class. With the help of interface, we will 
+only have to do a single line of `#include` statement within `main.
+cpp`. This time, we have consolidated 2 different types of bank 
+accounts into a single abstract base class `Account`. On top of that, 
+we have designed an interface `iAccount` for the main program to use, 
+while hiding the implementation details inside the `Account.cpp`. This 
+makes others easier to use our modules.
+
+Overall, this workshop is not too difficult. 
+
+
+In this project milestone, I've practiced on the design and 
+implementation of an abstract base class, `Patient`. This ABC inherits 
+the interface that we designed on the last milestone (`IOAble`), and 
+includes data members of the type of the classes that we designed and 
+implemented on the first milestone (`Time`). 
+
+Overall, this milestone isn't too challenging. The bugs that took me 
+hours to fix were minor and careless mistakes. However, I'd say the 
+relatively more difficult aspect of this milestone is understanding the 
+requirements. The wording and phrases used in the descriptions aren't 
+clear enough, often leaving me to guess what I'm supposed to do.

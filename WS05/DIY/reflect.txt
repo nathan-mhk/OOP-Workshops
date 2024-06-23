@@ -1,0 +1,35 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-02-14
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In part 1 of this workshop, I learned about operator overloading. We have 
+overloaded on most kinds of operators, including comparison operators, 
+addition/subtraction operators, assignment operators, and conversion 
+operator. I also learned about the convenience of modular programming - a 
+lot of the functions shall be designed and written in a way that they are 
+flexible and re-usable. I also practiced the usage of the this pointer, 
+and returning by references instead of values. In addition, for operators 
+that cannot be implemented as a public member function, we will have to 
+implement them outside of the class, as a global function.
+
+In part 2 of this workshop, we are basically doing the same thing, but 
+with fewer instruction and more freedom to implement additional helper 
+functions.
+
+Overall, I don't find this workshop to be too difficult. One of the tricky 
+part I would say is the declaration of the extraction operator 
+overloading. Unlike the insertion operator, the left operand of the 
+extraction operator is of class Power. Which means we could not implement 
+it as a member function of class Hero. Instead, we will have to make it 
+into a global helper function. Another tricky part is the conversion 
+operator, because the syntax is a little bit weird:
+bankAccount::operator bool() const
+At first glance, this function seems to not have a return type, or the 
+name of the function is a type name (like `bool` or `double`). But in 
+fact, the function name is basically "operator bool", with an extra space 
+in between.

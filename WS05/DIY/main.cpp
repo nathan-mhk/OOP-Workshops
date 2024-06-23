@@ -13,6 +13,15 @@
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-02-14
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
 #include <iostream>
 #include <cstring>
 #include "Hero.h"
@@ -109,5 +118,6 @@ void displayDetails(const Hero* heroes, int size) {
 	cout << "Details of our heroes are as follow: " << endl;
 	for (int i = 0; i < size; i++) {
 		heroes[i].display() << endl;
+		heroes[i].display().operator<<(endl);
 	}
 }

@@ -1,0 +1,52 @@
+/**
+ * Name: Nathan Kong
+ * Email: nkong@myseneca.ca
+ * ID: 150950236
+ * Date: 2024-02-03
+ * 
+ * I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In part 1, I've learned about the importance of the order of 
+"construction" and "destruction". I encountered a few segmentation fault 
+when I was working on part 1. After debugging the code, I realized didn't 
+perform necessary checks, and messed up the order of "destructions" 
+(delete calls) in my code. Which leads to the code accessing to illegal 
+memory locations.
+
+In part 1, the most difficult part I'd say is the const cast that are used 
+in Customer::set().
+In this function, we are given a pointer to const, and we are tasked to 
+assign the m_car data member to the pointer to const function parameter. 
+Due to the rule of const-correctness, we can only "elevate" the const-ness 
+of any object. That is, we cannot assign a pointer to const to a pointer 
+to non-const. We can only assign a pointer to const to another pointer to 
+const, or a const pointer to const. In our case, we will not be modifying 
+the Car object that m_car points to. Therefore, we can use a const_cast 
+function to remove the const-ness of the function parameter.
+
+Part 2 of this workshop is very interesting and fun. Probably because to 
+avoid people abusing the use of AI programs to do the work, we are 
+provided with a lot of freedom to implement our own solution. There's only 
+a couple mandatory functions, but with only a vague description on what 
+those functions should do. Therefore, I've learned a lot of things in part 
+2. Since I haven't touched C++ for many years, I had a good time on 
+refreshing my knowledge on the core features of C++ classes.
+
+The most difficult part of part 2 of this work shop I would say is the 
+Valgrind error that I encountered during my initial submission. My first 
+student_output.txt contains 4310 lines of text (according to Valgrind, 
+there're 361 errors, but no memory leak). Therefore, I'd say that the most 
+important thing I learned in this workshop is how to apply the concept of 
+divide and conquer. I had to extract actual useful information from those 
+4000 lines of messages for me to analysis the cause of the problem. With 
+the help of notepad++'s mark feature (I could not stress enough how 
+powerful that feature is), I was able to reduce those 4310 lines of error 
+messages down to less than 100 lines, a total of 7 unique Valgrind error 
+messages. The thing with Valgrind is that although the error messages it 
+produced can be overwhelming, the meaning of the error messages are not 
+that difficult to understand. With only 7 unique error messages left, I 
+was able to quickly notice that all of them comes from the same line of 
+code. This drastically shrinks down the lines of code that I had to 
+inspect on. And indeed, all of those 361 errors are caused by a very 
+simple line of code that I had forgot to add.
